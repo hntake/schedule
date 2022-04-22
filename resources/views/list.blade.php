@@ -2,21 +2,29 @@
 <link rel="stylesheet" href="{{ asset('css/schedule.css') }}"> <!-- schedule.cssと連携 -->
 @section('content')
 
-<div class="side"> <!-- サイドバー -->
-            <nav class="sidebar">
-                <p><a href="{{ url('home') }}"><h3>ホーム画面に戻る</h3></a></p>
-                <p><a href="{{ url('list') }}"><h3>保存リストへ</h3></a></p>
-                <p><a href="{{ url('search') }}"><h3>リスト検索へ</h3></a></p>
-                <p><a href="{{ url('store') }}"><h3>画像登録へ</h3></a></p>
-                <p><a href="{{ url('create') }}"><h3>新規作成</h3></a></p>
-            </nav>
-            <div class="logout_buttom">
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf <!-- CSRF保護 -->
-                    <input type="submit" value="ログアウト"> <!-- ログアウトしてログイン画面に戻る -->
-                </form>
-            </div>
-        </div>
+<div class="header-logo-menu">
+  <div id="nav-drawer">
+      <input id="nav-input" type="checkbox" class="nav-unshown">
+      <label id="nav-open" for="nav-input"><span></span></label>
+      <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+      <div id="nav-content">
+          <ul>
+              <li><a href="{{ url('home') }}"><h3>ホーム画面に戻る</h3></a></li>
+              <li><a href="{{ url('list') }}"><h3>保存リストへ</h3></a></li>
+              <li><a href="{{ url('search') }}"><h3>リスト検索へ</h3></a></li>
+              <li><a href="{{ url('store') }}"><h3>画像一覧</h3></a></li>
+              <li><a href="{{ url('create') }}"><h3>新規作成</h3></a></li>
+          </ul>
+      </div>
+      <script>
+        $(function() {
+         $('#nav-content li a').on('click', function(event) {
+        $('#nav-input').prop('checked', false);
+        });
+        });
+      </script>
+    </div>
+  </div>
 <!-- 新規スケジュール作成パネル… -->
 <div class="panel-body">
     <!-- バリデーションエラーの表示 -->
@@ -43,7 +51,7 @@
                     </div>
                 </form>
 
-                <table class="table-hover">
+                <table class="result">
                     <tbody id="tbl">
                             <!--スケジュール一覧 -->
                                     @foreach ($schedules as $schedule)

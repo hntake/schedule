@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Image;
+use App\Models\ClassType;
 
 class ScheduleController extends Controller
 {
@@ -19,8 +20,11 @@ class ScheduleController extends Controller
     public function create(Request $request)
     {
         $images = Image:: all();
+        $types = ClassType:: all()->pluck('type', 'id');
+        // $types = ClassType:: get(['type']);
         return view('create',[
             'images' => $images,
+            'types' =>$types,
         ]);
     }
     /**
@@ -90,6 +94,8 @@ class ScheduleController extends Controller
     public function schedule(Request $request){
 
         $validate = $request -> validate([
+            'type' => 'required',
+            'student_name' => 'required|max:25',
             'schedule_name' => 'required|max:25',
             'image0' => 'required|max:25',
             'image1' => 'required|max:25',
@@ -101,6 +107,8 @@ class ScheduleController extends Controller
 
         //schedulesテーブルへの受け渡し
         $schedule = new Schedule;
+        $schedule->type = $request->type;
+        $schedule->student_name = $request->student_name;
         $schedule->schedule_name = $request->schedule_name;
         $schedule->image0 = $request->image0;
         $schedule->image1 = $request->image1;

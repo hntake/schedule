@@ -38,22 +38,15 @@
                     </tr>
 
                     </div>
-                    <!-- <div class="openbox">
-                        <label for="pushlabel">▼ スケジュールリスト選択</label>
-                        <input id="pushlabel" class="inputcss" type="checkbox" />
-                        <span class="boxshow">
-
-                        <ul>
-                        <li>**ここは折りたたまれる部分です**</li>
-                        <li><a href="URL">折りたたまれる部分にリンク付けたい場合</a></li>
-                        </ul>
-                        </span>
-                    </div> -->
-
-                    <div class="button">
-                        <a href="{{ route('create') }}">新規作成</a>
-                        <a href="{{ route('search') }}">スケジュール検索</a>
-                     </div>
+                 
+                    <div class="route">
+                        <div class="submit_button">
+                            <a href="{{ route('create') }}">新規作成</a>
+                        </div>
+                        <div class="submit_button">
+                            <a href="{{ route('search') }}">スケジュール検索</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

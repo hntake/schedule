@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/schedule.css') }}"> <!-- products.cssと連携 -->
 @section('content')
 
+<!--ハンバーガーメニュー-->
 <div class="header-logo-menu">
   <div id="nav-drawer">
       <input id="nav-input" type="checkbox" class="nav-unshown">
@@ -49,7 +50,7 @@
                     @foreach ($schedules as $schedule)
                     <tr>
                         <td>{{ $schedule->schedule_name}}</td>
-                        <td style="width:10%"><a href="schedule/{{ $schedule->id }}" class="button">表示</a></td>
+                        <td style="width:20%"><a href="schedule/{{ $schedule->id }}" class="button">表示</a></td>
                     </tr>
                     @endforeach
                 </table>

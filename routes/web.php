@@ -16,10 +16,20 @@ use App\Http\Controllers\ScheduleController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'admin_auth'], function(){
 
+    // この中は、全てミドルウェアが適用されます。
+    Route::get('middleware_test', 'HomeController@middleware_test');
+
+
+});
 Auth::routes();
 //ホーム画面表示
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/* Route::get('/home',function(){
+    return view('auth.login');
+});
+ */
+ Route::get('/home', [App\Http\Controllers\ScheduleController::class, 'list'])->name('home');
 
 //新規作成画面へ遷移
 Route::get('/create', [App\Http\Controllers\ScheduleController::class,'create'])->name('create');
@@ -27,7 +37,7 @@ Route::get('/create', [App\Http\Controllers\ScheduleController::class,'create'])
 Route::post('/create', [App\Http\Controllers\ScheduleController::class,'schedule'])->name('create');
 
  //画像表示ページ
-Route::get('/select_picture/{id}', [App\Http\Controllers\ScheduleController::class,'select_picture'])->name('select_picture');
+Route::get('/selectpicture/{id}', [App\Http\Controllers\ScheduleController::class,'select_picture'])->name('select_picture');
  //画像削除
 Route::get('/picture/{id}', [App\Http\Controllers\ScheduleController::class,'delete_picture'])->name('delete_picture');
 
@@ -44,11 +54,16 @@ Route::get('/list/{id}', [App\Http\Controllers\ScheduleController::class,'delete
 //並び替え
 Route::get('/sort', [App\Http\Controllers\ExtraController::class,'sort'])->name('sort');
 //スケジュール表示画面
-Route::get('/schedule', [App\Http\Controllers\ScheduleController::class,'index'])->name('schedule');
+Route::get('/schedule/{id}', [App\Http\Controllers\ScheduleController::class,'index'])->name('schedule');
 //スケジュール検索画面表示
 Route::get('/search', [App\Http\Controllers\ScheduleController::class,'search'])->name('search');
-//スケジュール検索結果表示
+//スケジュール検索
 Route::get('/search', [App\Http\Controllers\ExtraController::class,'search'])->name('search');
+//スケジュール検索結果ページへ遷移
+Route::get('/result', [App\Http\Controllers\ExtraController::class,'search'])->name('search');
+Route::group(['middleware' => 'admin_auth'], function(){
 
+    // この中は、全てミドルウェアが適用されます。
+    Route::get('middleware_test', 'HomeController@middleware_test');
 
-
+});

@@ -16,7 +16,7 @@ class Schedule extends Model
 
     protected $fillable = [
 
-       'id', 'schedule_name','image0','image1','image2','image3','image4'
+       'id', 'type','student_name','schedule_name','image0','image1','image2','image3','image4'
 
         ];
 
@@ -50,6 +50,10 @@ class Schedule extends Model
             return $this->hasOne(Image::class,'id','image4');
 
         }
+      /***学年ドロップダウンメニュー */
+      public function ClassType() {
+        return $this->hasOne(ClassType::class, 'id','type');
+    }
    /*  public function order($select)
         {
             if($select == 'asc'){

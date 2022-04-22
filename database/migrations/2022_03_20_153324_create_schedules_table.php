@@ -15,6 +15,8 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->increments('id')->index();
+            $table->text('type')->index();
+            $table->string('student_name')->index();
             $table->string('schedule_name')->index();
             $table->string('image0');
             $table->string('image1');
