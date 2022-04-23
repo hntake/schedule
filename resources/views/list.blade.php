@@ -39,23 +39,23 @@
                     <form action="{{ route('sort') }}" method="GET">
                         @csrf
                         <select name="narabi">
-                            <option value="asc">昇順</option>
-                            <option value="desc">降順</option>
+                            <option value="asc">古い順</option>
+                            <option value="desc">新しい順</option>
                         </select>
                         <div class="form-group">
                             <div class="button">
-                                <input type="submit" value="並び替え">
-                               <!--  <i class="fa fa-plus">並び替え</i> -->
-                            </input>
+                                <input type="submit" value="作成日時で並び替え"></input>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
 
                 <table class="result">
                     <tbody id="tbl">
                             <!--スケジュール一覧 -->
                                     @foreach ($schedules as $schedule)
                                         <tr >
+                                            <td >{{ $schedule->ClassType->type }}</td>
+                                            <td >{{ $schedule->student_name }}</td>
                                             <td >{{ $schedule->schedule_name }}</td>
                                             <td ><div  class="button"><a href="{{ route('schedule',['id'=>$schedule->id]) }}">表示</a></div></td>
                                             <td ><div  class="button"><a href="{{ route('delete_list',['id'=> $schedule->id]) }}" >削除</a></div></td>

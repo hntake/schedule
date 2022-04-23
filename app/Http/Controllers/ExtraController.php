@@ -25,7 +25,10 @@ class ExtraController extends Controller
      #もしキーワードがあったら
      if(!empty($keyword))
      {
-       $query->where('schedule_name','like','%'.$keyword.'%');
+       $query->where('schedule_name','like','%'.$keyword.'%')
+       ->orWhere('type','like','%'.$keyword.'%')
+       ->orWhere('student_name','like','%'.$keyword, '%');
+
      }
 
 

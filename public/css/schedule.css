@@ -9,6 +9,9 @@ body{
     height: max-content;
     border:none
 }
+input#image.form-control{
+    width:max-content;
+}
 input{
     height: 40px;
     width: 200px;
@@ -254,7 +257,7 @@ svg {
 /*写真保存*/
 .store{
     border: solid 1px lightseagreen;
-    margin: 100 200;
+    margin: 100 100;
     background: lightpink;
 }
 .store-list{

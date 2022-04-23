@@ -43,7 +43,7 @@
             </div>
             <!--↑↑ 検索フォーム ↑↑-->
 
-            @if($schedules->count())
+             @if($schedules->count())
 
                 <table class="result" border="1">
                     @foreach ($schedules as $schedule)
@@ -58,7 +58,7 @@
             <p>見つかりませんでした。</p>
             @endif
 
-
+ 
         </div>
     </div>
 </div>
